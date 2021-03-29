@@ -1,41 +1,65 @@
-var myResults = function (response) {
-    let apiResp = JSON.parse(response);
-    let resultArr = apiResp["docs"];
 
-    let bookIsbn = resultArr["isbn"][0];
-    let isbnReq = new XMLHttpRequest();
+// api url
 
-    isbnReq.open('GET', 'http://covers.openlibrary.org/b/isbn/' + bookIsbn + '.jpg');
+// const api_url = 
+//       "http://openlibrary.org/search.json?title=" + title;
+// Defining async function
+async function getapi(url) {
 
-
-   isbnReq.send();
-    }
-
-
-
-
-function search() {
-    let idRequest = new XMLHttpRequest();
     let title = document.getElementById("searchBar").value;
 
-    title = encodeURIComponent(title);  // encodeURICompoment will allow the title to be added to the HTTPS request because spaces can't exist
+    title = encodeURIComponent(title);
+    // Storing response
+    const response = await fetch("http://openlibrary.org/search.json?title=" + title);
+    // Storing data in form of JSON
+    var data = await response.json();
+    console.log(data);
+    show(data);
 
-    document.getElementById("searchBar").value = "";  // clears the search bar
+
+    var myIsbn = `${data.docs[0].isbn[0]}`;
+    // const isbnRes = await fetch ("http://covers.openlibrary.org/b/isbn/" + myIsbn + ".jpg");
+    // var cover = isbnRes.json();
+    // console.log(isbnRes);
+    showImage("http://covers.openlibrary.org/b/isbn/" + myIsbn + ".jpg");
+
     
-
-    idRequest.open('GET', 'http://openlibrary.org/search.json?title=' + title, true);  // requesting the movie title from the api so I can get the id
-
-    idRequest.onload = function () {
-        
-        if (idRequest.status == 200) {
-            myResults(this.responseText); //executes the myResults() using the response of the idRequest request.
-        } else {
-            document.getElementById('error').innerHTML = "Results not found"; //error message fo if this request was unsuccessful 
-
-
-        }
-
-    }
-
-    idRequest.send();
 }
+// Calling that async function
+// getapi(api_url);
+
+
+
+
+
+// Function to define innerHTML for HTML table
+function show(data) {
+let header = `${data.docs[0].title}`;
+let author = `${data.docs[0].author_name[0]}`
+
+document.getElementById("bookTitle").innerHTML = header;
+document.getElementById("bookAuthor").innerHTML = author;
+
+}
+
+function showImage(isbnImageUrl) {
+    document.getElementById("image").innerHTML = "<img src=\"" + isbnImageUrl + "\"></img>";
+}
+
+
+//     let tab = 
+//         `<tr>
+//             <th>Title</th>
+//             <th>Author</th>
+//             <th>Position</th>
+//             <th>Salary</th>
+//             </tr>`;
+//     // Loop to access all rows 
+//     tab += `<tr> 
+//     <td>${data.docs[0].title} </td>
+//     <td>${data.docs[0].author_name[0]}</td>
+//     <td>${data.position}</td> 
+//     <td>${data.salary}</td>          
+// </tr>`;
+//     // Setting innerHTML as tab variable
+//     document.getElementById("employees").innerHTML = tab;
