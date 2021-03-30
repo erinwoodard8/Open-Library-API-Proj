@@ -1,36 +1,86 @@
 #results {
+    margin: auto;
+    align-content: center;
     text-align: center;
     font-family: 'Della Respira', serif;
 }
 
 #bookTitle{
-    font-size: 36px;
+    font-size: 3vw;
+    text-decoration: underline;
 }
    
     
 #bookAuthor{
-    font-size: 36px;
+    font-size: 2vw;
 }
 #bookYear{
-    font-size: 36px;
+    font-size: 2vw;
 }
 #bookGenre1{
-    font-size: 36px;
+    font-size: 2vw;
 }
 
 #firstSentence{
-    font-size: 28px;
+    font-size: 3vw;
 
 }
 #amazon{
-    font-size: 28px;
-    }
+font-size: 2vw;
+}
 
-    .logo {
-        width: 10%;
-        height: 10%;
-        object-fit: contain;
-    }
-    button {
-        color: black
-    }
+.logo {
+    width: 10%;
+    height: 10%;
+    object-fit: contain;
+}
+button {
+    color: black
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: center;
+    background-image:url("https://st2.depositphotos.com/1000489/5184/v/950/depositphotos_51846985-stock-illustration-old-open-book.jpg") ;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    resize: both;
+    align-items: center;
+  }
+
+  .navbar{
+    background-color: rgba(6, 92, 126, 0.27);
+    font-size: 2vw;
+}
+
+
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height: 100%;
+    flex: 1;
+  }
+
+  .column.leftPage {
+    margin-left: 10%;
+    margin-right: 20%;
+  }
+  
+  .column img {
+      width: 100%;
+      height: 100%;
+     
+  }
+
+  .column.rightPage {
+    margin-right: 10%;
+    margin-left: 20%;
+  }
