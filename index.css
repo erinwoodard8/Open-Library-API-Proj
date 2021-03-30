@@ -25,3 +25,12 @@
 #amazon{
     font-size: 28px;
     }
+
+    .logo {
+        width: 10%;
+        height: 10%;
+        object-fit: contain;
+    }
+    button {
+        color: black
+    }
