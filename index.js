@@ -1,9 +1,4 @@
 
-// api url
-
-// const api_url = 
-//       "http://openlibrary.org/search.json?title=" + title;
-// Defining async function
 async function getapi(url) {
 
     let title = document.getElementById("searchBar").value;
@@ -18,27 +13,34 @@ async function getapi(url) {
 
 
     var myIsbn = `${data.docs[0].isbn[0]}`;
-    // const isbnRes = await fetch ("http://covers.openlibrary.org/b/isbn/" + myIsbn + ".jpg");
-    // var cover = isbnRes.json();
-    // console.log(isbnRes);
+
     showImage("http://covers.openlibrary.org/b/isbn/" + myIsbn + ".jpg");
 
     
+
 }
-// Calling that async function
-// getapi(api_url);
 
 
 
-
-
-// Function to define innerHTML for HTML table
 function show(data) {
 let header = `${data.docs[0].title}`;
-let author = `${data.docs[0].author_name[0]}`
+let author = `${data.docs[0].author_name[0]}`;
+let year = `${data.docs[0].first_publish_year}`;
+let genre = `${data.docs[0].subject[0]}`;
+let genre2= `${data.docs[0].subject[1]}`;
+let genre3= `${data.docs[0].subject[2]}`;
+let amazonLink = `<a href="https://www.amazon.com/s?k=${data.docs[0].id_amazon[0]}&ref=nb_sb_noss" target="_blank">Purchase on Amazon</a>`;
+let sentence=`${data.docs[0].first_sentence}`;
 
 document.getElementById("bookTitle").innerHTML = header;
+document.getElementById("firstSentence").innerHTML = sentence;
 document.getElementById("bookAuthor").innerHTML = author;
+document.getElementById("bookYear").innerHTML = year;
+document.getElementById("bookGenre1").innerHTML = genre;
+document.getElementById("bookGenre2").innerHTML = genre2;
+document.getElementById("bookGenre3").innerHTML = genre3;
+
+document.getElementById("amazon").innerHTML = amazonLink;
 
 }
 
@@ -46,20 +48,8 @@ function showImage(isbnImageUrl) {
     document.getElementById("image").innerHTML = "<img src=\"" + isbnImageUrl + "\"></img>";
 }
 
-
-//     let tab = 
-//         `<tr>
-//             <th>Title</th>
-//             <th>Author</th>
-//             <th>Position</th>
-//             <th>Salary</th>
-//             </tr>`;
-//     // Loop to access all rows 
-//     tab += `<tr> 
-//     <td>${data.docs[0].title} </td>
-//     <td>${data.docs[0].author_name[0]}</td>
-//     <td>${data.position}</td> 
-//     <td>${data.salary}</td>          
-// </tr>`;
-//     // Setting innerHTML as tab variable
-//     document.getElementById("employees").innerHTML = tab;
+document.getElementById("searchBar").addEventListener("keydown", function (event) { //Allows you to submit the value of the searchBar using the enter key.
+    if (event.keyCode === 13) {
+      getapi();
+    }
+  });
