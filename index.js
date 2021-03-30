@@ -1,9 +1,10 @@
 
-async function getapi(url) {
-
+async function getapi() {
+  
     let title = document.getElementById("searchBar").value;
 
     title = encodeURIComponent(title);
+    
     // Storing response
     const response = await fetch("http://openlibrary.org/search.json?title=" + title);
     var data = await response.json();
@@ -40,8 +41,3 @@ function showImage(isbnImageUrl) {
     document.getElementById("image").innerHTML = "<img src=\"" + isbnImageUrl + "\"></img>";
 }
 
-document.getElementById("searchBar").addEventListener("keydown", function (event) { 
-    if (event.keyCode === 13) {
-      getapi();
-    }
-  });
