@@ -1,0 +1,27 @@
+#results {
+    text-align: center;
+    font-family: 'Della Respira', serif;
+}
+
+#bookTitle{
+    font-size: 36px;
+}
+   
+    
+#bookAuthor{
+    font-size: 36px;
+}
+#bookYear{
+    font-size: 36px;
+}
+#bookGenre1{
+    font-size: 36px;
+}
+
+#firstSentence{
+    font-size: 28px;
+
+}
+#amazon{
+    font-size: 28px;
+    }
